@@ -1,0 +1,6 @@
+server:
+  port: 8085
+person:
+  name: "阿三"
+  age: 21
+  company: "家里蹲"
