@@ -105,7 +105,7 @@ public class HeaderFilter extends HttpServlet implements Filter{
                 	}
                 }
                 if(count == 2) {
-                    System.out.println();
+                    
                     Integer countParam = 0;
                     for(String bodyName : Bodies.keySet()){
                     	if(Bodies.get(bodyName).equals(RequestBodies.get(bodyName))) {
