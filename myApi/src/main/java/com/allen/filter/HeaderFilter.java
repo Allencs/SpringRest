@@ -1,33 +1,27 @@
-package com.allen;
+package com.allen.filter;
 
+import com.alibaba.fastjson.JSON;
+import com.allen.commons.JWTUtil;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSON;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import com.allen.JWTUtil;
-
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
 
 @Component
-@WebFilter(urlPatterns={"/myApi/post"}, filterName="tokenAuthorFilter")
+@WebFilter(urlPatterns={"/myApi/demo"}, filterName="tokenAuthorFilter")
 public class HeaderFilter extends HttpServlet implements Filter{
 	
 	/**
@@ -49,7 +43,7 @@ public class HeaderFilter extends HttpServlet implements Filter{
 		Headers.put("position", "IT");
 		Headers.put("behavior", "PerformanceTest");
 		Map<String, String> Bodies = new HashMap<String, String>();
-		Bodies.put("username", "杨浩");
+		Bodies.put("username", "GoodBoy");
 		Bodies.put("pw", "root123");
 		// 将请求转换成HttpServletRequest 请求 
         HttpServletRequest req = (HttpServletRequest) servletRequest;

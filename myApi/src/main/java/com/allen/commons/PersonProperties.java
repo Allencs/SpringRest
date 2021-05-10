@@ -1,4 +1,4 @@
-package com.allen;
+package com.allen.commons;
 
 
 public class PersonProperties {
