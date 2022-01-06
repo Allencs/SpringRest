@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 /target/
-!.mvn/wrapper/maven-wrapper.jar
+!myApi/.mvn/wrapper/maven-wrapper.jar
 ../.idea/
 ### STS ###
 .apt_generated
@@ -17,36 +16,14 @@
 *.iml
 *.ipr
 
+*.log
+
 ### NetBeans ###
 /nbproject/private/
 /build/
 /nbbuild/
 /dist/
 /nbdist/
-=======
-/target/
-!.mvn/wrapper/maven-wrapper.jar
 /logs/
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
->>>>>>> 8b300802c5936a739d073437e58e390ff8ab307f
 /.nb-gradle/
