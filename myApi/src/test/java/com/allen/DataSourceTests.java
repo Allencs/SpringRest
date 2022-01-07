@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,17 +22,26 @@ public class DataSourceTests {
 
     @Test
     public void testConnection() throws Exception {
-        System.out.println(dataSource);
-        Connection conn = dataSource.getConnection();
-        String sql = "select * from master_vehicle.vehicle limit 5";
-        PreparedStatement preparedStatement = conn.prepareStatement(sql);
-        ResultSet res = preparedStatement.executeQuery();
-        // 遍历查询结果集
-        while(res.next()){
-            System.out.println(res.getString("vin"));
+        for (int i = 0; i < 50; i++) {
+            new Thread(() -> {
+                Connection connection = null;
+                try {
+                    connection = dataSource.getConnection();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                PreparedStatement preparedStatement = null;
+                try {
+                    preparedStatement = connection.prepareStatement("select * from master_vehicle.vehicle limit 5");
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    resultSet.next();
+                    System.out.println(resultSet.getString("vin"));
+                    Thread.sleep(120000);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
-        res.close();
-        preparedStatement.close();
-        conn.close();
     }
 }

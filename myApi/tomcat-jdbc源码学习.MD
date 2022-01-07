@@ -1,4 +1,8 @@
 ## Tomcat JDBC连接池
+
+### 配置参数详解
+> https://wiki.jikexueyuan.com/project/tomcat/tomcat-jdbc-pool.html
+
 ### Connection代理对象
 `dataSource.getConnection()`获取到的`Connection`对象是个代理对象；
 ``` package org.apache.tomcat.jdbc.pool.ConnectionPool;
@@ -150,7 +154,7 @@ public Object invoke(Object proxy, Method method, Object[] args) throws Throwabl
 `ProxyConnection`类继承了`JdbcInterceptor`并实现了`InvocationHandler`接口。
 
 package org.apache.tomcat.jdbc.pool.ConnectionPool的returnConnection方法实现的是归还连接池的逻辑，根据代码可知，可以通过判断busy
-队列的大小来知道连接池是否已经使用完。
+队列的大小来知道连接池是否已经使用完。如果busy的size等于MaxActive，则JDBC连接池已耗尽。
 ```package org.apache.tomcat.jdbc.pool.ConnectionPool
 /**
      * Returns a connection to the pool
