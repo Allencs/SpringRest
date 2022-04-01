@@ -1,12 +1,13 @@
 package com.allen.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.allen.commons.JWTUtil;
+import com.allen.jwt.JWTUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -21,9 +22,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@WebFilter(urlPatterns={"/myApi/demo"}, filterName="tokenAuthorFilter")
+//@WebFilter(urlPatterns={"/user/staffInfo"}, filterName="tokenAuthorFilter")
 public class HeaderFilter extends HttpServlet implements Filter{
-	
+
+	@Autowired
+	JWTUtil jwtUtil;
+
 	/**
 	 * 序列化/反序列化版本号，只有一致情况下，才能反序列化成功
 	 */
@@ -70,7 +74,7 @@ public class HeaderFilter extends HttpServlet implements Filter{
         resp.setHeader("Create-By", "Allen");
         
         String token = req.getHeader("access-token");
-        String exception = JWTUtil.parseJWT(token).toString();
+        String exception = jwtUtil.parseJWT(token).toString();
         logger.info(exception);
         if (token != null) {
         	if (ExpiredJwtException.class.getName().equals(exception)){

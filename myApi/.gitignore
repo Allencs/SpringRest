@@ -1,5 +1,5 @@
 /target/
-!myApi/.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
 ../.idea/
 ### STS ###
 .apt_generated
@@ -9,6 +9,7 @@
 .settings
 .springBeans
 .sts4-cache
+../.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
@@ -17,6 +18,7 @@
 *.ipr
 
 *.log
+../logs
 
 ### NetBeans ###
 /nbproject/private/

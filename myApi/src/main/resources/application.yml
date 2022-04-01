@@ -3,7 +3,22 @@ server:
 #  tomcat:
 #    max-threads: 500
 #    min-spare-threads: 100
-person:
-  name: "阿三"
-  age: 21
-  company: "家里蹲"
+
+# SpringBoot2.x后，proxyTargetClass配置已失效【即使继承接口也会使用CGLIB方式】，需要使用如下配置项：
+# 参考说明：https://www.cnblogs.com/chihirotan/p/14425522.html
+spring:
+  aop:
+    proxy-target-class: false
+
+StaffInfo:
+  code: "200"
+  name: "Mr.JiaLiDun"
+  job: "PerformanceTestEngineer"
+  company: "PerfMa"
+  message: "Congratulation! You got the message!"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: startup

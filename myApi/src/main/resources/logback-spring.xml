@@ -17,12 +17,12 @@
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
-ß
+
     <!-- 按照每天生成日志文件 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>${LOG_HOME}/myApi.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>myapi.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
@@ -37,10 +37,32 @@
         </triggeringPolicy>
     </appender>
 
+    <appender name="FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE"/>
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>90</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>1024</queueSize>
+        <!-- 设置永不阻塞【超过队列阈值，会导致日志丢失】 -->
+        <neverBlock>true</neverBlock>
+    </appender>
+
+<!--    <appender name="STDOUT_ASYNC" class="ch.qos.logback.classic.AsyncAppender">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        &lt;!&ndash; 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 &ndash;&gt;-->
+<!--        <discardingThreshold>90</discardingThreshold>-->
+<!--        &lt;!&ndash; 更改默认的队列的深度,该值会影响性能.默认值为256 &ndash;&gt;-->
+<!--        <queueSize>1024</queueSize>-->
+<!--        &lt;!&ndash; 设置永不阻塞【超过队列阈值，会导致日志丢失】 &ndash;&gt;-->
+<!--        <neverBlock>true</neverBlock>-->
+<!--    </appender>-->
+
     <!-- 日志输出级别 -->
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+<!--        <appender-ref ref="STDOUT" />-->
+<!--        <appender-ref ref="FILE" />-->
+        <appender-ref ref="FILE_ASYNC" />
+<!--        <appender-ref ref="STDOUT_ASYNC" />-->
     </root>
 
 </configuration>
