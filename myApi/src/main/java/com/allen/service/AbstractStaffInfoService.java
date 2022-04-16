@@ -1,6 +1,8 @@
 package com.allen.service;
 
-import com.allen.dto.PersonProperties;
+import com.alibaba.fastjson.JSON;
+import com.allen.model.Staff;
+import com.allen.model.StaffProperties;
 import com.allen.util.UuidUtil;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,13 +15,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class AbstractStaffInfoService {
     public static AtomicInteger counter = new AtomicInteger(0);
 
-    public PersonProperties getNewStaff() {
-        PersonProperties personProperties = new PersonProperties();
-        personProperties.setCode(UuidUtil.getStrUuid());
-        personProperties.setCompany("PerfMa");
-        personProperties.setJob("PerformanceTestEngineer");
-        personProperties.setMessage("you are " + counter.incrementAndGet() + "st staff");
-        personProperties.setName("Mr.JiaLiDun-" + counter.get());
-        return personProperties;
+    public StaffProperties getNewStaff() {
+        StaffProperties staffProperties = new StaffProperties();
+        staffProperties.setCode(UuidUtil.getStrUuid());
+        staffProperties.setCompany("PerfMa");
+        staffProperties.setJob("PerformanceTestEngineer");
+        staffProperties.setMessage("you are " + counter.incrementAndGet() + "st staff");
+        staffProperties.setName("Mr.JiaLiDun-" + counter.get());
+        return staffProperties;
+    }
+
+    public Boolean authenticate(Staff staff) {
+        return staff.userName.equals("GoodBoy") && staff.pwd.equals("root123");
     }
 }

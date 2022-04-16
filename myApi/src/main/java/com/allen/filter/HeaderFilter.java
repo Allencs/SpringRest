@@ -102,30 +102,27 @@ public class HeaderFilter extends HttpServlet implements Filter{
                 		count += 1;
                 	}
                 }
-                if(count == 2) {
-                    
-                    Integer countParam = 0;
-                    for(String bodyName : Bodies.keySet()){
-                    	if(Bodies.get(bodyName).equals(RequestBodies.get(bodyName))) {
-                    		countParam += 1;
-                    	}
-                    }
-                    
-                    if(countParam == 2) {
-                    	filterChain.doFilter(req, resp);
-                    }
-                    else {
-                    	String info_6 = "{'code':400, 'Incorrect Json'}";
-                    	resp.sendError(400, info_6);
-                    	logger.info(info_6);
-                    }
-                }else {
-                	String info_5 = "{'code':403, 'No Permission'}";
-                	resp.sendError(403, info_5);
-                	logger.info("Incorrect Headers");
+                if(count != 2) {
+					String info_5 = "{'code':403, 'No Permission'}";
+					resp.sendError(403, info_5);
+					logger.info("Incorrect Headers");
+//                    Integer countParam = 0;
+//                    for(String bodyName : Bodies.keySet()){
+//                    	if(Bodies.get(bodyName).equals(RequestBodies.get(bodyName))) {
+//                    		countParam += 1;
+//                    	}
+//                    }
+//
+//                    if(countParam == 2) {
+//                    	filterChain.doFilter(req, resp);
+//                    }
+//                    else {
+//                    	String info_6 = "{'code':400, 'Incorrect Json'}";
+//                    	resp.sendError(400, info_6);
+//                    	logger.info(info_6);
+//                    }
                 }
-                          
-                
+
         	}
         	else {
               String info_3 = "{'msg':'token will invalid at 2 minutes！please refresh'}";

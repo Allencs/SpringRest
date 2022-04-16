@@ -1,6 +1,6 @@
 package com.allen.service.proxiedBeans.impl;
 
-import com.allen.dto.PersonProperties;
+import com.allen.model.StaffProperties;
 import com.allen.service.AbstractStaffInfoService;
 import com.allen.service.UserService;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class StaffInfoServiceImpl extends AbstractStaffInfoService implements UserService {
 
     @Override
-    public PersonProperties getPersonInfo() {
+    public StaffProperties getPersonInfo() {
         return getNewStaff();
     }
 }

@@ -1,6 +1,6 @@
 package com.allen.service;
 
-import com.allen.dto.PersonProperties;
+import com.allen.model.StaffProperties;
 
 /**
  * @Author: allen
@@ -10,5 +10,5 @@ import com.allen.dto.PersonProperties;
 
 public interface UserService {
 
-    PersonProperties getPersonInfo();
+    StaffProperties getPersonInfo();
 }

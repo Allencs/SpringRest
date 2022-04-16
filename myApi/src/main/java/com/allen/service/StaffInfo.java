@@ -1,7 +1,7 @@
 package com.allen.service;
 
-import com.allen.dto.PersonProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.allen.dto.ResponseData;
+import com.allen.model.Staff;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class StaffInfo extends AbstractStaffInfoService{
 
-    public PersonProperties getPersonInfo() {
-        return getNewStaff();
+    public ResponseData getPersonInfo(Staff staff) {
+        ResponseData responseData = new ResponseData();
+        if (authenticate(staff)) {
+            responseData.setCode(200);
+            responseData.setMessage("操作成功");
+            responseData.setStaffProperties(getNewStaff());
+            return responseData;
+        }
+        responseData.setCode(100);
+        responseData.setMessage("用户名或密码错误");
+       return responseData;
     }
 }

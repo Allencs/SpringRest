@@ -1,9 +1,7 @@
 package com.allen.service.proxiedBeans;
 
-import com.allen.dto.PersonProperties;
+import com.allen.model.StaffProperties;
 import com.allen.service.AbstractStaffInfoService;
-import com.allen.util.UuidUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service(value = "staffInfoService")
 public class StaffInfoService extends AbstractStaffInfoService {
 
-    public PersonProperties getPersonInfo() {
+    public StaffProperties getPersonInfo() {
         return getNewStaff();
     }
 }
