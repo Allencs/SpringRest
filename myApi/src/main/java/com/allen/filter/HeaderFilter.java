@@ -106,6 +106,7 @@ public class HeaderFilter extends HttpServlet implements Filter{
 					String info_5 = "{'code':403, 'No Permission'}";
 					resp.sendError(403, info_5);
 					logger.info("Incorrect Headers");
+					filterChain.doFilter(req, resp);
 //                    Integer countParam = 0;
 //                    for(String bodyName : Bodies.keySet()){
 //                    	if(Bodies.get(bodyName).equals(RequestBodies.get(bodyName))) {
