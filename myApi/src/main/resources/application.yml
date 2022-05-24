@@ -17,6 +17,19 @@ StaffInfo:
   company: "PerfMa"
   message: "Congratulation! You got the message!"
 
+knife4j:
+  enable: true
+  setting:
+    enableFooter: true
+    enableFooterCustom: true
+    footerCustomContent: Apache License 2.0 | Copyright  2022 - [PerfMa性能调优·性能问题battle到底🥊]()
+  documents:
+    -
+      group: default
+      name: 其他说明
+      # 某一个文件夹下所有的.md文件
+      locations: classpath:markdown/README.md
+
 management:
   endpoints:
     web:

@@ -1,9 +1,8 @@
 package com.allen.controller;
 
-
-import com.alibaba.fastjson.JSONObject;
 import com.allen.dao.NewStaff;
 import com.allen.dto.ResponseData;
+import com.allen.dto.StaffServiceResponse;
 import com.allen.model.Staff;
 import com.allen.service.StaffInfo;
 import com.allen.service.proxiedBeans.StaffInfoService;
@@ -68,7 +67,8 @@ public class UserController {
 
     @ApiOperation(value = "新建员工信息")
     @RequestMapping(value = "/user/newStaffInfo", method = RequestMethod.POST)
-    public JSONObject GetPersonInfo() {
-        return newStaff.create();
+    public StaffServiceResponse newStaffInfo() {
+//        return CommonResponse.success(newStaff.create());
+        return (StaffServiceResponse) StaffServiceResponse.success(new StaffProperties());
     }
 }
